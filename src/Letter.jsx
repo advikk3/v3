@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import "./Letter.css";
 
 const Letter = ({ onMoreSurprises, onBack }) => {
@@ -23,7 +23,8 @@ const Letter = ({ onMoreSurprises, onBack }) => {
   const [currentLineIndex, setCurrentLineIndex] = useState(0);
   const [currentCharIndex, setCurrentCharIndex] = useState(0);
 
-  const letterContent = [
+  /* ✅ Memoized letter content (fixes ESLint warning) */
+  const letterContent = useMemo(() => [
     "My Dearest Love, 💖",
     "",
     "blah blah",
@@ -54,7 +55,7 @@ const Letter = ({ onMoreSurprises, onBack }) => {
     "blah blah",
     "",
     "blah blah",
-  ];
+  ], []);
 
   const typingTimeoutRef = useRef(null);
 
@@ -101,7 +102,7 @@ const Letter = ({ onMoreSurprises, onBack }) => {
     }
 
     return () => clearTimeout(typingTimeoutRef.current);
-  }, [isTyping, currentLineIndex, currentCharIndex]);
+  }, [isTyping, currentLineIndex, currentCharIndex, letterContent]);
 
   /* 📜 Auto-scroll */
   useEffect(() => {
