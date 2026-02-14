@@ -183,7 +183,7 @@ function App() {
             
             {/* Subtitle */}
             <p className="subtitle">
-              some text
+              May I be Your Boyfriend????🥺🥺🥺
             </p>
 
             {/* Buttons Container */}
